@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import './App.css'
+import DisplayContent from './components/DisplayContent'
 
-function App() {
+import Buttons from './components/Buttons';
+
+
+class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+      arrayNum: 0,
+      indexNum: 1
+
+    }
+    
+  }
+
+  handleClickPlus = () => {
+    if(this.state.indexNum < 25){
+    this.setState({arrayNum: this.state.arrayNum + 1,
+      indexNum: this.state.indexNum + 1
+      
+    })
+  }
+
+  }
+
+  handleClickMinus = () => {
+    if (this.state.indexNum > 1){
+    this.setState({arrayNum: this.state.arrayNum - 1,
+      indexNum: this.state.indexNum - 1
+    })
+  }
+  }
+
+  render () {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="Container">
+      <div className="Header">
+      <h2>Home</h2>
+      </div>
+      <DisplayContent arrayNum={this.state.arrayNum} indexNum={this.state.indexNum}/>
+      <Buttons handleClickPlus={this.handleClickPlus} handleClickMinus={this.handleClickMinus}/>
+    
+     
     </div>
+      
+      
+    
   );
+}
 }
 
 export default App;
